@@ -1,6 +1,7 @@
 import React, {PropTypes,Component} from 'react';
 import logo from './../img/welcome.png';
 import './../styles/main.scss';
+import LabelCustom from './LabelCustome.js';
 
 class EmployeeDirectory extends Component {
 
@@ -11,7 +12,11 @@ class EmployeeDirectory extends Component {
     constructor(props) {
     super(props);
     this._initEmployeeDirectory();
-    this.state = {};
+    this.onClickBtn = this.onClickBtn.bind(this);
+    this.onChangeTxt = this.onChangeTxt.bind(this);
+    this.state = {
+      textValue:"No Text"
+    };
 }
 
 /**
@@ -26,12 +31,14 @@ class EmployeeDirectory extends Component {
  * Life Cycle function - componentWillMount
  */
     componentWillMount() {
+      console.log("componentWillMount");
 }
 
 /**
  * Life Cycle function - componentDidMount
  */
     componentDidMount() {
+  console.log("componentDidMount");
 }
 
 /**
@@ -39,6 +46,7 @@ class EmployeeDirectory extends Component {
  * @param newProps
  */
     componentWillReceiveProps(newProps) {
+  console.log("componentWillReceiveProps");
 }
 
 /**
@@ -48,6 +56,7 @@ class EmployeeDirectory extends Component {
  * @returns {boolean}
  */
     shouldComponentUpdate(newProps, newState) {
+  console.log("shouldComponentUpdate");
     return true;
 }
 
@@ -57,6 +66,7 @@ class EmployeeDirectory extends Component {
  * @param nextState
  */
     componentWillUpdate(nextProps, nextState) {
+  console.log("componentWillUpdate");
 }
 
 /**
@@ -65,12 +75,24 @@ class EmployeeDirectory extends Component {
  * @param prevState
  */
     componentDidUpdate(prevProps, prevState) {
+  console.log("componentDidUpdate");
 }
 
 /**
  * Life Cycle function - componentWillUnmount
  */
     componentWillUnmount() {
+  console.log("componentWillUnmount");
+}
+
+onClickBtn(event){
+console.log("test");
+console.log(event);
+}
+
+  onChangeTxt(event){
+  console.log(event.target.value);
+  this.setState({textValue:event.target.value})
 }
 
 /**
@@ -79,19 +101,13 @@ class EmployeeDirectory extends Component {
  */
     render() {
     return (
-    
+
         <div className='container-fluid'>
-            <div className="row">
-                <div className="col-lg-12">
-                    <img src={logo} alt=""/>
-                        <h1>
-                            Welcome to React Starter Kit
-                        </h1>
-                        <p>Powered with Bootstratp (V3)</p>
-                </div>
-            </div>
-            </div>
-    
+          <input type="text" onChange={this.onChangeTxt}/>
+          <input type="button" value="Click " onClick={this.onClickBtn}/>
+          <LabelCustom labelText={this.state.textValue}></LabelCustom>
+
+        </div>
     );
 }
 }
